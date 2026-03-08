@@ -1,20 +1,10 @@
 fun main() {
     val num = readLine()!!.toInt()
-    val cards = readLine()!!
-    .split(" ")
-    .map { it.toInt()}
-    .sortedDescending()
+    var row = mutableListOf<Int>()
 
-    var alice = 0
-    var bob = 0
-
+    // 個数分繰り返す
     for (i in 0 until num) {
-        // alice
-        if ((i % 2) == 0) {
-            alice = alice + cards[i]
-        } else {
-            bob = bob + cards[i]
-        }
+        row.add(readLine()!!.toInt())
     }
-    println(alice - bob) 
+    println(row.distinct().size)
 }
