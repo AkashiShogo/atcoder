@@ -3,5 +3,8 @@ kotlin/build/
 kotlin/.gradle/
 kotlin/.kotlin/
 
+# Claude
+CLAUDE.md
+
 # macOS
 .DS_Store
