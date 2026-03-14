@@ -1,5 +1,3 @@
-package d
-
 fun main() {
 
 }

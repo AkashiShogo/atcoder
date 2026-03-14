@@ -1,5 +1,3 @@
-package e
-
 fun main() {
 
 }
