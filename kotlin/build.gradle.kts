@@ -23,5 +23,17 @@ sourceSets {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("a.MainKt")
+}
+
+// 問題ごとの実行タスク (nr a, nr b, ...)
+listOf("a", "b", "c", "d", "e", "f").forEach { prob ->
+    tasks.register<JavaExec>(prob) {
+        group = "atcoder"
+        description = "Run problem ${prob.uppercase()}"
+        dependsOn("classes")
+        classpath = sourceSets["main"].runtimeClasspath
+        mainClass.set("${prob}.${prob.uppercase()}Kt")
+        standardInput = file("src/input.txt").inputStream()
+    }
 }
