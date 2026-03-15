@@ -6,5 +6,8 @@ kotlin/.kotlin/
 # Claude
 CLAUDE.md
 
+# Test input
+kotlin/src/input.txt
+
 # macOS
 .DS_Store
