@@ -1,23 +1,19 @@
 fun main() {
-    var data = readLine()!!.toInt()
-    // var data = readLine()!!.split(" ").map{it->it.toInt()}
+    // var data = readLine()!!.toInt()
+    var (N, K) = readLine()!!.split(" ").map{it->it.toInt()}
+    var count = 0
 
-    var list = mutableListOf<String>()
-    var maxWord = ""
-    for (i in 0 until data) {
-        val word = readLine()!!.toString()
-        if (maxWord.length < word.length) maxWord = word
-        list.add(word)
-    }
+    for (i in 0 .. N) {
+        val txt = i.toString()
+        val leg = txt.length
+        var sum = 0
 
-    val maxWordLength = maxWord.length
-    for (i in 0 until (list.size)) {
-        val diff = (maxWordLength - list[i].length) / 2
-        var newWord = list[i]
-        for (j in 0 until diff) {
-            if (maxWord != newWord)
-            newWord = "." + newWord + "."
+        for (j in 0 until leg) {
+            sum = sum + Character.getNumericValue(txt[j])
         }
-        println(newWord)
+        if (sum == K) {
+            count++
+        }
     }
+    println(count)
 }

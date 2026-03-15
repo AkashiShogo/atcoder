@@ -1,19 +1,37 @@
 fun main() {
-    val n = readLine()!!.toInt()
-    val a = readLine()!!.split(" ").map { it.toInt() }
 
-    // 各マスの「最終的な停留地点」を格納する配列
-    // インデックスを1始まりにするため n+1 のサイズで確保
-    val ans = IntArray(n + 1)
+    val N = readLine()!!.toInt()
+    val Ai = readLine()!!.split(" ").map { it.toInt() }
+    val max = Ai.max()
+    val freq = mutableMapOf<Int, Int>()
+    for (a in Ai) {
+      freq[a] = (freq[a] ?: 0) + 1
+    }
+    var candidates = mutableListOf<Int>()
+    candidates.add(max)
 
-    // N→1 の順に処理する理由：
-    // 制約 i ≤ A[i] により、マスiのワープ先は必ず i 以上
-    // → 大きい番号から処理すれば、マスiを処理するとき A[i] の答えは確定済み
-    for (i in n downTo 1) {
-        ans[i] = if (a[i - 1] == i) i          // ワープ先が自分自身 → ここが終着点
-                 else ans[a[i - 1]]             // ワープ先の答えをそのまま流用（1回で確定）
+    for (i in 0 until N) {
+        candidates.add(max + Ai[i])
     }
 
-    // 1..N の答えをスペース区切りで出力
-    println((1..n).map { ans[it] }.joinToString(" "))
+    var resList = mutableListOf<Int>()
+    for (L in candidates.distinct()){
+        var check = true
+        for (i in freq.keys) {
+            if (L == i) {
+
+            } else if (i < L){
+                if (L - i == i) {
+                    check = check && (freq[i] ?: 0)%2 == 0
+                } else {
+                    check = check && (freq[L-i] != null)
+                }
+            } else {
+                check = false
+            }
+            if (!check) break
+        }
+        if (check) resList.add(L)
+    }
+    println(resList.distinct().map{it}.joinToString(" "))
 }
