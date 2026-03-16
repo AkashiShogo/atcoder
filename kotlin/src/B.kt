@@ -1,19 +1,12 @@
 fun main() {
     // var data = readLine()!!.toInt()
-    var (N, K) = readLine()!!.split(" ").map{it->it.toInt()}
-    var count = 0
+    var (N, T, A) = readLine()!!.split(" ").map{it->it.toInt()}
 
-    for (i in 0 .. N) {
-        val txt = i.toString()
-        val leg = txt.length
-        var sum = 0
+    val half = N/2
 
-        for (j in 0 until leg) {
-            sum = sum + Character.getNumericValue(txt[j])
-        }
-        if (sum == K) {
-            count++
-        }
-    }
-    println(count)
+     if (T > half || A > half) {
+      println("Yes")
+  } else {
+      println("No")
+  }
 }

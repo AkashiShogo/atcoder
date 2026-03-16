@@ -1,16 +1,13 @@
 fun main() {
-    var data = readLine()!!.toString()
-    // var data = readLine()!!.split(" ").map{it->it.toInt()}
-    var char = data[0]
-    var res = "No"
+    var N = readLine()!!.toInt()
+    var An = readLine()!!.split(" ").map {it -> it.toInt()}
+    val X = readLine()!!.toInt()
 
-    for (i in 1..2) {
-        if (char == data[i] && data[0] == data[i]) {
-            res = "Yes"
+    var res = 
+        if (An.contains(X)) {
+            "Yes"
         } else {
-            char = data[i]
+            "No"
         }
-    }
-  
     println(res)
 }
