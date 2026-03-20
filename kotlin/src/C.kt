@@ -1,18 +1,19 @@
 fun main() {
-    val s1 = readLine()!!
-    val s2 = readLine()!!
-    var s3 = readLine()!!
-    val list = readLine()!!.map{Character.getNumericValue(it)}
-    
-    var res = ""
+    val N = readLine()!!.toInt()
+    val list = mutableListOf<String>()
 
-    for (i in list) {
-        if (i == 1){
-            res = res + s1
-        } else if (i == 2) {
-            res = res + s2
-        } else {
-            res = res + s3
+    for (i in 0 until N) {
+        list.add(readLine()!!)
+    }
+    var res = "No"
+    outer@ for (x in 0 until N) {
+        for (y in 0 until N) {
+            if (x == y) continue
+            val str = list[x] + list[y]
+            if (str == str.reversed()) {
+                res = "Yes"
+                break@outer
+            }
         }
     }
     println(res)
