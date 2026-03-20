@@ -1,14 +1,9 @@
 fun main() {
-    var list = mutableListOf<String>()
-    for (i in 0..100) {
-        readLine().let { 
-            if(!it.isNullOrEmpty()) {
-                list.add(it.toString())
-            }
-         }
+    readLine()!!.split(" ").map { it -> it.toInt() }
+    var A = readLine()!!.split(" ").map { it -> it.toInt() }.toMutableList()
+    val B = readLine()!!.split(" ").map { it -> it.toInt() }
+    for (b in 0 until B.size) {
+        A.remove(B[b])
     }
-    list.reverse()
-    for (i in 0 until list.size) {
-        println(list[i])
-    }
+    println(A.joinToString(" "))
 }

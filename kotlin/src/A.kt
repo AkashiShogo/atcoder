@@ -1,4 +1,4 @@
 fun main() {
-    val str = readLine()!!
-    println(str.uppercase())
+    val (S,T) = readLine()!!.split(" ")
+    println("$S san")
 }
