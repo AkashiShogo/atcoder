@@ -1,20 +1,14 @@
 fun main() {
-    val N = readLine()!!.toInt()
-    val list = mutableListOf<String>()
-
-    for (i in 0 until N) {
-        list.add(readLine()!!)
-    }
-    var res = "No"
-    outer@ for (x in 0 until N) {
-        for (y in 0 until N) {
-            if (x == y) continue
-            val str = list[x] + list[y]
-            if (str == str.reversed()) {
-                res = "Yes"
-                break@outer
+    var list = mutableListOf<String>()
+    for (i in 0..100) {
+        readLine().let { 
+            if(!it.isNullOrEmpty()) {
+                list.add(it.toString())
             }
-        }
+         }
     }
-    println(res)
+    list.reverse()
+    for (i in 0 until list.size) {
+        println(list[i])
+    }
 }
