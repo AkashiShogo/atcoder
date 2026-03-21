@@ -1,13 +1,21 @@
 fun main() {
-    val (H, W) = readLine()!!.split(" ").map { it -> it.toInt() }
-    var count = 0
-    for (h in 0 until H){
-        val row = readLine()!!
-        for (w in 0 until W) {
-            if (row[w].toString() == "#") {
-                count++
+    val N = readLine()!!.toInt()
+    val cost = Array(N + 1) { IntArray(N + 1) }
+    for (i in 1..N - 1) {
+        val row = readLine()!!.split(" ").map { it.toInt() }
+        for (j in i + 1..N) cost[i][j] = row[j - i - 1]
+    }
+
+    var res = "No"
+    outer@ for (a in 1..N - 2) {
+        for (b in a + 1..N - 1) {
+            for (c in b + 1..N) {
+                if (cost[a][b] + cost[b][c] < cost[a][c]) {
+                    res = "Yes"
+                    break@outer
+                }
             }
         }
     }
-    println(count)
+    println(res)
 }
