@@ -1,24 +1,16 @@
 fun main() {
-    var (N, D) = readLine()!!.split(" ").map { it.toInt() }
-    val list = mutableMapOf<Int, String>()
+    val (N, D) = readLine()!!.split(" ").map { it.toInt() }
+    val schedule = List(N) { readLine()!! } // N人のスケジュール
 
-    for (i in 0 until N) {
-        val row = readLine()!!
-        list.put(i, row)
-    }
-    var max = 0
-    var count = 0
+    var max = 0   // 最長の連続全員休み日数
+    var count = 0 // 現在の連続全員休み日数
+
     for (i in 0 until D) {
-        val day = mutableListOf<String>()
-        for (j in 0 until N) {
-            val a = list[j]!![i].toString()
-            day.add(a)
-        }
-        if (day.count() { it == "o" } == N) {
+        if ((0 until N).all { j -> schedule[j][i] == 'o' }) {
             count++
-            max = Math.max(max, count)
+            max = maxOf(max, count)
         } else {
-            max = Math.max(max, count)
+            max = maxOf(max, count)
             count = 0
         }
     }
