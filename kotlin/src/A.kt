@@ -1,10 +1,8 @@
 fun main() {
-    val N = readLine()!!.toInt()
-    val list = mutableListOf<Int>()
-
-    for (i in 0 until N) {
-        list.add(N - i)
-        if (i== N )break
+    val (X, Y) = readLine()!!.split(" ").map { it.toInt() }
+    var res = X
+    for (i in 0 until Y) {
+        res = res * 2
     }
-    println(list.joinToString(","))
+    println(res)
 }
