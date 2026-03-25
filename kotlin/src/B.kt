@@ -1,9 +1,11 @@
 fun main() {
-    var (X, Y) = readLine()!!.split(" ").map { it.toInt() }
-    var count = 0
-    while (X < Y) {
-        X += 10
-        count++
+    var (S, T, X) = readLine()!!.split(" ").map { it.toInt() }
+
+    if (S < T && S <= X && X < T) {
+        println("Yes")
+    } else if (S > T && (X >= S || X < T)) {
+        println("Yes")
+    } else {
+        println("No")
     }
-    println(count)
 }

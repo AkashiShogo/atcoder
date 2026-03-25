@@ -1,18 +1,30 @@
 fun main() {
-    val (N, D) = readLine()!!.split(" ").map { it.toInt() }
-    val schedule = List(N) { readLine()!! } // N人のスケジュール
-
-    var max = 0   // 最長の連続全員休み日数
-    var count = 0 // 現在の連続全員休み日数
-
-    for (i in 0 until D) {
-        if ((0 until N).all { j -> schedule[j][i] == 'o' }) {
-            count++
-            max = maxOf(max, count)
-        } else {
-            max = maxOf(max, count)
-            count = 0
+    var (H, W, X, Y) = readLine()!!.split(" ").map { it.toInt() }
+    var C = 0
+    val map = mutableMapOf<Int, String>()
+    for (i in 1..H) {
+        map.put(i, readLine()!!)
+    }
+    val walking = readLine()!!
+    var done = mutableListOf<Pair<Int, Int>>()
+    for (w in 0 until walking.length) {
+        val word = walking[w].toString()
+        val before = Pair(X, Y)
+        when {
+            word == "U" -> X -= 1
+            word == "D" -> X += 1
+            word == "L" -> Y -= 1
+            word == "R" -> Y += 1
+        }
+        val next = map.get(X)!!.toString().get(Y - 1).toString()
+        if (next == "#") {
+            X = before.first
+            Y = before.second
+        }
+        if (next == "@" && !done.contains(Pair(X, Y))) {
+            C++
+            done.add(Pair(X, Y))
         }
     }
-    println(max)
+    println("$X $Y $C")
 }
