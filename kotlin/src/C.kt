@@ -1,30 +1,21 @@
+import java.util.TreeMap
+
 fun main() {
-    var (H, W, X, Y) = readLine()!!.split(" ").map { it.toInt() }
-    var C = 0
-    val map = mutableMapOf<Int, String>()
-    for (i in 1..H) {
-        map.put(i, readLine()!!)
+    val Q = readLine()!!.toInt()
+    var map = TreeMap<Int, Int>()
+    var sb = StringBuilder()
+    var total = 0
+    for (q in 0 until Q) {
+        val (query, h) = readLine()!!.split(" ")
+        if (query == "1") {
+            map[h.toInt()] = (map[h.toInt()] ?: 0) + 1
+            total++
+        } else {
+            val sub = map.headMap(h.toInt() + 1)
+            total -= sub.values.sum()
+            sub.clear()
+        }
+        sb.appendLine(total)
     }
-    val walking = readLine()!!
-    var done = mutableListOf<Pair<Int, Int>>()
-    for (w in 0 until walking.length) {
-        val word = walking[w].toString()
-        val before = Pair(X, Y)
-        when {
-            word == "U" -> X -= 1
-            word == "D" -> X += 1
-            word == "L" -> Y -= 1
-            word == "R" -> Y += 1
-        }
-        val next = map.get(X)!!.toString().get(Y - 1).toString()
-        if (next == "#") {
-            X = before.first
-            Y = before.second
-        }
-        if (next == "@" && !done.contains(Pair(X, Y))) {
-            C++
-            done.add(Pair(X, Y))
-        }
-    }
-    println("$X $Y $C")
+    print(sb)
 }
