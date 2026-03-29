@@ -1,8 +1,4 @@
 fun main() {
-    val S = readLine()!!
-    if (S.length % 5 == 0) {
-        println("Yes")
-    } else {
-        println("No")
-    }
+    val N = readLine()!!
+    println(N.takeLast(2))
 }
