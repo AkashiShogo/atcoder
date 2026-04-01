@@ -1,16 +1,15 @@
 fun main() {
-    val (N, T, P) = readLine()!!.split(" ").map { it.toInt() }
-    val member = (readLine()!!.split(" ").map { it.toInt() })
-    var day = -1
-    var count = 0
-    while (count < P) {
-        count = 0
-        day++
-        for (n in 0 until N) {
-            if ((member[n] + day) >= T) {
-                count++
-            }
-        }
+    val N = readLine()!!.toInt()
+    val list = readLine()!!.split(" ").map { it.toInt() }
+
+    var now = list[0]
+    var next = list[1]
+    var index = 0
+
+    while (now < next) {
+        now = list[index +1]
+        next = list.getOrElse(index + 2, {-1})
+        index++
     }
-    println(day)
+    println(now)
 }

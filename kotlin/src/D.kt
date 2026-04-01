@@ -1,13 +1,17 @@
 fun main() {
     val N = readLine()!!.toInt()
-    val member = mutableMapOf<Int, Int>()
+    var As = readLine()!!.split(" ").map { it.toInt() }.toMutableList()
+    val Q = readLine()!!.toInt()
+    var nextQ = readLine()?.split(" ")?.map { it.toInt() }
+    var sb = StringBuilder()
 
-    for (n in 0 until N) {
-        val row = readLine()!!
-        member.put(n + 1,row.count { it == 'o' })
+    while (nextQ != null) {
+        if (nextQ[0] == 1) {
+            As[nextQ[1] - 1] = nextQ[2]
+        } else {
+            sb.appendLine(As[nextQ[1] - 1])
+        }
+        nextQ = readLine()?.split(" ")?.map { it.toInt() }
     }
-    val sorted = member.entries.sortedWith(
-      compareByDescending<Map.Entry<Int, Int>> { it.value }.thenBy { it.key }
-  )
-    println(sorted.joinToString(" ") { it.key.toString() })
+    println(sb)
 }
